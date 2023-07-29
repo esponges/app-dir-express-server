@@ -1,13 +1,14 @@
-
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
     "outDir": "dist",
     "lib": ["es2019"],
     "target": "es2019",
     "isolatedModules": false,
-    "noEmit": false
+    "noEmit": false,
+    "sourceMap": true,
+    "strictNullChecks": true
   },
   "include": ["server/app.ts"]
 }

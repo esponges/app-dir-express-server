@@ -1,26 +1,11 @@
-import express, { Express, Request, Response } from 'express';
-import * as http from 'http';
-import next, { NextApiHandler } from 'next';
+import express, { Request, Response } from 'express';
 
-// const port: number = parseInt('3030', 10);
-const port: number = parseInt(process.env.PORT || '3030', 10);
-const dev: boolean = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dev });
-const nextHandler: NextApiHandler = nextApp.getRequestHandler();
+const app = express();
 
-nextApp.prepare().then(async() => {
-  const app: Express = express();
-  const server: http.Server = http.createServer(app);
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello, world!');
+});
 
-  app.get('/api', (req: Request, res: Response) => {
-    res.json({ message: 'Hello from server!' });
-  });
-
-  app.all('*', (req: any, res: any) => {
-    return nextHandler(req, res);
-  });
-
-  server.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`);
-  });
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
 });
