@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "backend": "node src/server/index.ts"
+    "dev": "nodemon --exec ts-node --require ts-node/register server/app.ts",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/express": "^4.17.17",
@@ -24,5 +23,10 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }
